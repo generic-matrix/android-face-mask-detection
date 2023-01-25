@@ -20,7 +20,7 @@ The project has 4 folders
 * Android App -> The Android App code
 * Model -> It has mode.tflite , it is the trained model
 * APK -> The apk.app which can be installed onto an compatible Android device
-* Training -> It has Training.ipynb whci can be opened in Google Colab
+* Training -> It has Training.ipynb which can be opened in Google Colab
 * Output
 
 # How to build the Android App
