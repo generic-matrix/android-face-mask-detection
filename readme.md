@@ -6,6 +6,9 @@
 
 # Outputs
 
+![With Mask](https://github.com/generic-matrix/android-face-mask-detection/blob/main/Output/with_mask.png?raw=true)
+![Without Mask](https://github.com/generic-matrix/android-face-mask-detection/blob/main/Output/without mask.png?raw=true)
+
 # Project Structure
 
 The project has 4 folders
@@ -14,6 +17,7 @@ The project has 4 folders
 * Model -> It has mode.tflite , it is the trained model
 * APK -> The apk.app which can be installed onto an compatible Android device
 * Training -> It has Training.ipynb whci can be opened in Google Colab
+* Output
 
 # How to build the Android App
 
@@ -81,7 +85,7 @@ Follow the code in file /android/app/java/com.facemask.android/MainActivity.kt t
 
 1) In the activity_main.xml add a com.otaliastudios.cameraview.CameraView object to process frame one by one  and also the com.example.facemaskdetection.OverlayView to show the bouding box
 
-2) In the OnCreate() function 
+2) In the ```OnCreate()``` function 
 
 We are using FaceDetector API (https://developers.google.com/android/reference/com/google/android/gms/vision/face/FaceDetector) from Google Play Services . This API helps to detect face in a given frame .
 
@@ -91,7 +95,7 @@ val faceDetector = FaceDetector.Builder(this).setTrackingEnabled(true).build()
 
 This function returns FaceDetector.Builder object 
 
-3) In the same onCreate() function 
+3) In the same ```onCreate()``` function 
 
 Set lifecycle owner to the the MainActivity.kt
 
@@ -179,7 +183,7 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
     ```
 
         5.3.7) Return the label
-        
+
     ```
             val label = labelOutput.mapWithFloatValue
             return label
