@@ -25,7 +25,7 @@ The project has 4 folders
 
 # How to build the Android App
 
-* git clone <>
+* ```git clone https://github.com/generic-matrix/android-face-mask-detection.git```
 * cd Android App
 * Open the same on the Android Studio
 
