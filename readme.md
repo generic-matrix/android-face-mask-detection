@@ -121,7 +121,10 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
     ```
 
     5.2) We detect faces using the detect function in the FaceDetector.Builder object
+
+    ```
     val faces = faceDetector.detect(frame)
+    ```
 
     5.3 ) For Each face (See predict function)
 
@@ -164,20 +167,23 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
     ```
 
         5.3.5) Run the model on inputimage buffer and get output buffer
-            ```
+
+    ```
             model.run(inputImageBuffer.buffer, outputBuffer.buffer.rewind())
-            ```
+    ```
 
         5.3.6) Using TensorLabel object parse the output buffer
-            ```
+
+    ```
             val labelOutput = TensorLabel(labels, outputBuffer) 
-            ```
+    ```
 
         5.3.7) Return the label
-            ```
+        
+    ```
             val label = labelOutput.mapWithFloatValue
             return label
-            ```
+    ```
 
     5.4) Create a Box object and append boundingBoxList
 
