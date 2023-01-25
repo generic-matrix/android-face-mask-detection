@@ -125,13 +125,13 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
 
     5.3 ) For Each face (See predict function)
 
-        # 5.3.1 ) Load The Model from model.tflite
+        5.3.1 ) Load The Model from model.tflite
 
     ```
         val modelFile = FileUtil.loadMappedFile(this, "model.tflite")
     ```
 
-        - 5.3.2 ) Create the labels from labels.txt
+        5.3.2 ) Create the labels from labels.txt
 
     ```
         val labels = FileUtil.loadLabels(this, "labels.txt")
