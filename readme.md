@@ -36,10 +36,11 @@ The project has 4 folders
 
 2) Copy model.tflite and label.txt and create a new folder called assets here /android/app/src/main/assets get both of them inside assets's folder
 
-3) Create a text file in labels.txt with the content as below (WithMask and withoutmask are the labels, refer the Training.ipynb in the training folder):
-
+3) Create a text file in labels.txt with the exact same contents as below (WithMask and withoutmask are the labels, refer the Training.ipynb in the training folder):
+```
 WithMask
 WithoutMask
+```
 
 4) In build.gradle(:app)  
 ```
