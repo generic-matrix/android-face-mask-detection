@@ -34,7 +34,7 @@ WithMask
 WithoutMask
 
 4) In build.gradle(:app)  
-
+```
 implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
 implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
 implementation 'org.tensorflow:tensorflow-lite-support:0.0.0-nightly'
@@ -42,8 +42,9 @@ implementation 'com.github.esafirm.android-image-picker:imagepicker:2.3.1'
 implementation 'com.github.bumptech.glide:glide:4.5.0'
 implementation 'com.google.android.gms:play-services-vision:20.0.0'
 api 'com.otaliastudios:cameraview:2.6.2'
-
+```
 Follow the code in this file /android/app/res/layout/activity_main.xml (this contain the UI on the Device)
+
 Follow the code in file /android/app/java/com.facemask.android/MainActivity.kt this is the main code.
 
 
@@ -84,9 +85,9 @@ Follow the code in file /android/app/java/com.facemask.android/MainActivity.kt t
 
 We are using FaceDetector API (https://developers.google.com/android/reference/com/google/android/gms/vision/face/FaceDetector) from Google Play Services . This API helps to detect face in a given frame .
 
-'''
+```
 val faceDetector = FaceDetector.Builder(this).setTrackingEnabled(true).build()
-'''
+```
 
 This function returns FaceDetector.Builder object 
 
@@ -121,19 +122,23 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
     val faces = faceDetector.detect(frame)
 
     5.3 ) For Each face (See predict function)
+
         5.3.1) Load The Model from model.tflite
             ```
             val modelFile = FileUtil.loadMappedFile(this, "model.tflite")
             ```
+
         5.3.2) Create the labels from labels.txt
             ```
             val labels = FileUtil.loadLabels(this, "labels.txt")
             ```
+
         5.3.3) Resize the bitmap image
             ```
             val cropSize = kotlin.math.min(input.width, input.height)
             ResizeWithCropOrPadOp(cropSize, cropSize)
             ```
+
         5.3.4) Process the bitmap to model's input width and height
             ```
             val imageDataType = model.getInputTensor(0).dataType() 
@@ -151,14 +156,17 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
                 .add(NormalizeOp(127.5f, 127.5f)) 
                 .build()
             ```
+
         5.3.5) Run the model on inputimage buffer and get output buffer
             ```
             model.run(inputImageBuffer.buffer, outputBuffer.buffer.rewind())
             ```
+
         5.3.6) Using TensorLabel object parse the output buffer
             ```
             val labelOutput = TensorLabel(labels, outputBuffer) 
             ```
+            
         5.3.7) Return the label
             ```
             val label = labelOutput.mapWithFloatValue
