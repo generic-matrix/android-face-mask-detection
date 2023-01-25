@@ -113,10 +113,12 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
 ```
 
 5) For Each frame we pass it to processBitmap function which returns the List of Box object 
+
     5.1) Create List of Box Object
-        ```
+
+    ```
         val boundingBoxList = mutableListOf<Box>()
-        ```
+    ```
 
     5.2) We detect faces using the detect function in the FaceDetector.Builder object
     val faces = faceDetector.detect(frame)
@@ -126,38 +128,40 @@ class Box(val rectF: RectF, val label: String, val isMask: Boolean)
         5.3.1 ) Load The Model from model.tflite
 
     ```
-            val modelFile = FileUtil.loadMappedFile(this, "model.tflite")
+        val modelFile = FileUtil.loadMappedFile(this, "model.tflite")
     ```
 
         5.3.2 ) Create the labels from labels.txt
 
     ```
-            val labels = FileUtil.loadLabels(this, "labels.txt")
+        val labels = FileUtil.loadLabels(this, "labels.txt")
     ```
 
         5.3.3) Resize the bitmap image
-            ```
-            val cropSize = kotlin.math.min(input.width, input.height)
-            ResizeWithCropOrPadOp(cropSize, cropSize)
-            ```
+
+    ```
+        val cropSize = kotlin.math.min(input.width, input.height)
+        ResizeWithCropOrPadOp(cropSize, cropSize)
+    ```
 
         5.3.4) Process the bitmap to model's input width and height
-            ```
-            val imageDataType = model.getInputTensor(0).dataType() 
-            val inputShape = model.getInputTensor(0).shape() 
+    
+    ```
+        val imageDataType = model.getInputTensor(0).dataType() 
+        val inputShape = model.getInputTensor(0).shape() 
 
-            val outputDataType = model.getOutputTensor(0).dataType() 
-            val outputShape = model.getOutputTensor(0).shape() 
+        val outputDataType = model.getOutputTensor(0).dataType() 
+        val outputShape = model.getOutputTensor(0).shape() 
 
-            var inputImageBuffer = TensorImage(imageDataType)
-            val outputBuffer = TensorBuffer.createFixedSize(outputShape, outputDataType) 
+        var inputImageBuffer = TensorImage(imageDataType)
+        val outputBuffer = TensorBuffer.createFixedSize(outputShape, outputDataType) 
 
-            val imageProcessor = ImageProcessor.Builder()
-                .add(ResizeWithCropOrPadOp(cropSize, cropSize)) 
-                .add(ResizeOp(inputShape[1], inputShape[2], ResizeOp.ResizeMethod.NEAREST_NEIGHBOR)) 
-                .add(NormalizeOp(127.5f, 127.5f)) 
-                .build()
-            ```
+        val imageProcessor = ImageProcessor.Builder()
+            .add(ResizeWithCropOrPadOp(cropSize, cropSize)) 
+            .add(ResizeOp(inputShape[1], inputShape[2], ResizeOp.ResizeMethod.NEAREST_NEIGHBOR)) 
+            .add(NormalizeOp(127.5f, 127.5f)) 
+            .build()
+    ```
 
         5.3.5) Run the model on inputimage buffer and get output buffer
             ```
