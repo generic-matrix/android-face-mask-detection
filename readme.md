@@ -7,7 +7,8 @@
 # Outputs
 
 ![With Mask](https://github.com/generic-matrix/android-face-mask-detection/blob/main/Output/with_mask.png?raw=true)
-![Without Mask](https://github.com/generic-matrix/android-face-mask-detection/blob/main/Output/without mask.png?raw=true)
+
+![Without Mask](https://github.com/generic-matrix/android-face-mask-detection/blob/main/Output/without_mask.png?raw=true)
 
 # Project Structure
 
